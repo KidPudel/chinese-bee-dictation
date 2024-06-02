@@ -24,4 +24,4 @@ COPY --from=build-stage /app/dist /usr/share/nginx/html
 
 # expose the port that railway will use
 EXPOSE ${PORT}
-CMD ["sh", "-e envsubst '${PORT}' < etc/nginx/conf.d/default.conf.template > etc/nginx/conf.d/default/conf && nginx -g 'daemon off;'"]
+CMD ["sh", "-c", "envsubst '${PORT}' < etc/nginx/conf.d/default.conf.template > etc/nginx/conf.d/default/conf && nginx -g 'daemon off;'"]
