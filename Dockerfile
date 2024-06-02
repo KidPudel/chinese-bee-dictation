@@ -6,7 +6,7 @@ ENV NODE_ENV=production
 WORKDIR /app
 
 # cache dependencies (what won't change often)
-COPY package*.json /,
+COPY package*.json /.
 
 RUN npm install
 
