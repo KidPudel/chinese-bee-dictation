@@ -8,13 +8,13 @@ WORKDIR /app
 # cache dependencies (what won't change often)
 COPY package*.json ./
 
-RUN npm install \
-    && npm i -g vite
+RUN npm install --include=dev
 
 COPY . .
 
+
 # build an application
-RUN npm run build --include=dev
+RUN npm run build
 
 # serve stage
 FROM nginx:stable-alpine AS production-stage
