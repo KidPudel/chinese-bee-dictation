@@ -8,7 +8,8 @@ WORKDIR /app
 # cache dependencies (what won't change often)
 COPY package*.json ./
 
-RUN npm install
+RUN npm install \
+    && npm i -g vite
 
 COPY . .
 
