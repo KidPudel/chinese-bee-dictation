@@ -6,12 +6,14 @@ ENV NODE_ENV=production
 WORKDIR /app
 
 # cache dependencies (what won't change often)
-COPY package*.json /.
+COPY package*.json /,
 
 RUN npm install
 
 COPY . .
 
+# build an application
+RUN npm run build
 
 # serve stage
 FROM nginx:stable-alpine AS production-stage
