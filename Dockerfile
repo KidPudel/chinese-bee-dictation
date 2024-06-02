@@ -25,5 +25,5 @@ COPY default.conf /etc/nginx/conf.d/default.conf
 COPY --from=build-stage /app/dist etc/share/nginx/html
 
 # expose the port that railway will use
-EXPOSE $PORT
+EXPOSE ${PORT}
 CMD ["nginx", "-g", "daemon off;"]
