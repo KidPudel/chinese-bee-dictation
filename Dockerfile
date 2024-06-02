@@ -22,5 +22,6 @@ FROM nginx:stable-alpine AS production-stage
 # where dist is where build static files are located
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 
-EXPOSE 80
+# expose the port that railway will use
+EXPOSE ${PORT}
 CMD ["nginx", "-g", "daemon off;"]
