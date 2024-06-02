@@ -19,9 +19,11 @@ RUN npm run build
 # serve stage
 FROM nginx:stable-alpine AS production-stage
 
+COPY default.conf /etc/nginx/conf.d/default.conf
+
 # where dist is where build static files are located
-COPY --from=build-stage /app/dist /usr/share/nginx/html
+COPY --from=build-stage /app/dist etc/share/nginx/html
 
 # expose the port that railway will use
 EXPOSE ${PORT}
-CMD ["sh", "-c", "envsubst '${PORT}' < etc/nginx/conf.d/default.conf.template > etc/nginx/conf.d/default/conf && nginx -g 'daemon off;'"]
+CMD ["nginx", "-g", "daemon off;"]
