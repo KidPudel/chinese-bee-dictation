@@ -23,7 +23,7 @@ FROM nginx:stable-alpine AS production-stage
 COPY nginx.conf.template /etc/nginx/nginx.conf.template
 
 # substitute
-RUN sh -c  "envsubst '${PORT}' < /etc/nginx/nginx.conf.template > /etc/nginx/conf.d/default.conf"
+RUN sh -c  "envsubst '\$PORT' < /etc/nginx/nginx.conf.template > /etc/nginx/conf.d/default.conf"
 
 # where dist is where build static files are located
 COPY --from=build-stage /app/dist etc/share/nginx/html
