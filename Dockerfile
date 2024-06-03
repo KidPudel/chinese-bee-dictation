@@ -19,8 +19,8 @@ RUN npm run build
 # serve stage
 FROM nginx:stable-alpine AS production-stage
 
-# set nginx config
-COPY default.config /etc/nginx/conf.d/default.config
+# set nginx configuration
+COPY default.conf /etc/nginx/conf.d/default.conf
 
 # set vue to location of serving static files
 COPY --from=build-stage /app/dist /usr/share/nginx/html
