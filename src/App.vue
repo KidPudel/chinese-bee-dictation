@@ -54,6 +54,10 @@ onMounted(() => {
   console.log("AAAAAAAAA")
   
   const options = {
+    headers: {
+      "Accepts": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
     method: "GET",
     url: `${api}/saved-words?user_id=1998388306"`,
   };
