@@ -1,16 +1,8 @@
 <template>
   <div id="desk">
     <h2>{{ question }}</h2>
-    <vue-drawing-canvas
-      ref="canvas"
-      :lineJoin="'round'"
-      :lineCap="'round'"
-      :width="250"
-      :height="250"
-      v-model:image="characterImage"
-      @touchstart.stop
-      @touchmove.prevent
-    />
+    <vue-drawing-canvas ref="canvas" :lineJoin="'round'" :lineCap="'round'" :width="250" :height="250"
+      v-model:image="characterImage" @touchstart.stop @touchmove.prevent />
     <div>
       <button @click="clear">Отчистить</button>
       <button @click="rate">Проверить</button>
@@ -52,11 +44,10 @@ const api = "https://chinesebeeapi-production.up.railway.app"
 
 onMounted(() => {
   console.log("AAAAAAAAA")
-  
+
   const options = {
     headers: {
       "Accepts": "application/json",
-      "Access-Control-Allow-Origin": "*",
     },
     method: "GET",
     url: `${api}/saved-words?user_id=1998388306"`,
@@ -65,12 +56,12 @@ onMounted(() => {
     if (response.data["success"] == true) {
       characters.value = response.data["saved_words"]
       question.value = characters.value[currentIndex.value]["russian"]
-      rightAnswer.value = characters.value[currentIndex.value]["chinese"] 
+      rightAnswer.value = characters.value[currentIndex.value]["chinese"]
       console.log(characters.value)
     } else {
       console.log(response)
     }
-  }); 
+  });
 });
 
 function clear() {
@@ -80,10 +71,9 @@ function clear() {
 function rate() {
   score.value = "Обработка..."
   const options = {
-    
+
     method: "POST",
-    header: { "content-type": "application/x-www-form-urlencoded", "Accepts": "application/json",
-      "Access-Control-Allow-Origin": "*",  },
+    header: { "content-type": "application/x-www-form-urlencoded", "Accepts": "application/json", },
     data: qs.stringify({ image: characterImage.value, target: rightAnswer.value }),
     url: `${api}/accuracy-score`,
   };
@@ -108,16 +98,17 @@ function next() {
     currentIndex.value = 0
   }
   question.value = characters.value[currentIndex.value]["russian"]
-  rightAnswer.value =characters.value[currentIndex.value]["chinese"]  
+  rightAnswer.value = characters.value[currentIndex.value]["chinese"]
 }
 
-</script> 
+</script>
 
 <style>
 * {
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
 }
+
 :root {
   width: 100vw;
   height: 100vh;
@@ -125,8 +116,9 @@ function next() {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+
 #desk {
   height: 80vh;
   width: 80vw;
@@ -137,6 +129,7 @@ function next() {
   flex-direction: column;
   align-items: center;
 }
+
 canvas {
   background-color: white;
   display: inline-block;
@@ -180,5 +173,4 @@ button:hover {
 button:focus {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
-
 </style>
