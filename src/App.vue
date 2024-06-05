@@ -71,9 +71,8 @@ function clear() {
 function rate() {
   score.value = "Обработка..."
   const options = {
-
     method: "POST",
-    header: { "content-type": "application/x-www-form-urlencoded", "Accepts": "application/json", },
+    headers: { "Content-Type": "application/x-www-form-urlencoded", "Accepts": "application/json", },
     data: qs.stringify({ image: characterImage.value, target: rightAnswer.value }),
     url: `${api}/accuracy-score`,
   };
