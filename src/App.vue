@@ -50,7 +50,7 @@ onMounted(() => {
       "Accepts": "application/json",
     },
     method: "GET",
-    url: `${api}/saved-words?user_id=1998388306"`,
+    url: `${api}/saved-words?user_id=1998388306`,
   };
   axios(options).then((response) => {
     if (response.data["success"] == true) {
