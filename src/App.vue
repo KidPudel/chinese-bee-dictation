@@ -48,12 +48,14 @@ const characters = ref([])
 
 const score = ref(0)
 
+const api = "https://chinesebeeapi-production.up.railway.app"
+
 onMounted(() => {
   console.log("AAAAAAAAA")
   
   const options = {
     method: "GET",
-    url: "http://localhost:8000/saved-words?user_id=1998388306",
+    url: `${api}/saved-words?user_id=1998388306"`,
   };
   axios(options).then((response) => {
     if (response.data["success"] == true) {
@@ -77,7 +79,7 @@ function rate() {
     method: "POST",
     header: { "content-type": "application/x-www-form-urlencoded" },
     data: qs.stringify({ image: characterImage.value, target: rightAnswer.value }),
-    url: "http://localhost:8000/accuracy-score",
+    url: `${api}/accuracy-score`,
   };
   axios(options).then((response) => {
     console.log(response.data)
