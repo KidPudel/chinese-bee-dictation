@@ -48,12 +48,14 @@ const api = "https://chinesebeeapi-production.up.railway.app"
 onMounted(() => {
   console.log(route)
   console.log(route.query)
+  const userId = route.query.user_id;
+  console.log("user id: " + userId)
   const options = {
     headers: {
-      "Accepts": "application/json",
+      "Accept": "application/json",
     },
     method: "GET",
-    url: `${api}/saved-words?user_id=${route.query.user_id}`,
+    url: `${api}/saved-words?user_id=${userId}`,
   };
   axios(options).then((response) => {
     if (response.data["success"] == true) {
