@@ -39,16 +39,14 @@ const currentIndex = ref(0)
 
 const characters = ref([])
 
-const route = useRoute()
-
 const score = ref(0)
 
 const api = "https://chinesebeeapi-production.up.railway.app"
 
 onMounted(() => {
-  console.log(route)
-  console.log(route.query)
-  const userId = route.query.user_id;
+  const urlParams = new URLSearchParams(window.location.search);
+
+  const userId = urlParams.get("user_id");
   console.log("user id: " + userId)
   const options = {
     headers: {
