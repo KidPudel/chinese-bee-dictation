@@ -46,6 +46,8 @@ const score = ref(0)
 const api = "https://chinesebeeapi-production.up.railway.app"
 
 onMounted(() => {
+  console.log(route)
+  console.log(route.query)
   const options = {
     headers: {
       "Accepts": "application/json",
