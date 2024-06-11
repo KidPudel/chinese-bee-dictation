@@ -1,12 +1,12 @@
 import {createApp} from 'vue'
-import {createRouter} from 'vue-router'
+import {createRouter, createMemoryHistory} from 'vue-router'
 import App from './App.vue'
 
 const routes = [
     {path: '/', component: App}
 ]
 
-const router = createRouter(routes)
+const router = createRouter({history: createMemoryHistory(), routes})
 
 const app = createApp(App)
 
