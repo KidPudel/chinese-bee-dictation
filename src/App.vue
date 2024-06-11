@@ -25,7 +25,7 @@ export default {
 
 <script setup>
 import { ref, onMounted } from "vue";
-import {useRoute} from "vue-router";
+import { useRoute } from 'vue-router';
 import axios from "axios";
 import qs from "qs";
 
@@ -47,14 +47,13 @@ const api = "https://chinesebeeapi-production.up.railway.app"
 
 onMounted(() => {
   console.log("AAAAAAAAA")
-  console.log(route.query)
 
   const options = {
     headers: {
       "Accepts": "application/json",
     },
     method: "GET",
-    url: `${api}/saved-words?user_id=`,
+    url: `${api}/saved-words?user_id=${route.query.user_id}`,
   };
   axios(options).then((response) => {
     if (response.data["success"] == true) {
